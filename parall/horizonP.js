@@ -476,7 +476,7 @@ function changeImg(index,score){
         sc = Math.ceil(sss);
 
         nextScrore = sc + 1;
-        
+
         if(deltY>0) {
             if (score[index] > 0) {
                 $("#obj-" + index + "-" + prevScore).css({
@@ -537,7 +537,7 @@ function changeChar(cl,amount,step){
 
 
 
-01
+
 function include( filename ) {
 
 
@@ -581,3 +581,31 @@ function include( filename ) {
 
 }
 
+function ssss(cl,amount,step){
+    var i = 0;
+    return function(){
+        k = i%amount;
+        j = amount-1
+        h = k-1;
+        if(Math.floor(i) == Math.ceil(i)){
+            if(k!== 0 ){
+                $("#"+cl + h).css({
+                    "opacity": "0"
+                })
+                $("#"+cl + k).css({
+                    "opacity": "1"
+                })
+            }else{
+                $("#"+cl + j).css({
+                    "opacity": "0"
+                })
+                $("#"+cl + k).css({
+                    "opacity": "1"
+                })
+            }
+        }
+
+
+        i+=(1/step);
+    }
+}
