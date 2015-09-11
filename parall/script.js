@@ -885,6 +885,7 @@ $(window).resize(function(){
     window.location.href=window.location.href
 })
 
+<<<<<<< HEAD
 a = "afsagshasdhdfhdah" +
 "adh" +
 "dh" +
@@ -896,3 +897,8 @@ a = "afsagshasdhdfhdah" +
 "aha" +
 "ah" +
 "ha"
+=======
+
+
+
+>>>>>>> next
