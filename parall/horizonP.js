@@ -468,7 +468,6 @@ function onVertScrollStop(k,s){
 
 function changeImg(index,score){
 
-
     return function call(){
         //var array  = imgArray[index];
         //var nowImg = array[score];
@@ -477,8 +476,7 @@ function changeImg(index,score){
         sc = Math.ceil(sss);
 
         nextScrore = sc + 1;
-
-
+        
         if(deltY>0) {
             if (score[index] > 0) {
                 $("#obj-" + index + "-" + prevScore).css({
