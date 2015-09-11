@@ -539,7 +539,6 @@ function changeChar(cl,amount,step){
 
 
 
-01
 function include( filename ) {
 
     var js = document.createElement('script');
