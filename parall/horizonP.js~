@@ -1,0 +1,530 @@
+
+var widthC = 1;
+var sectLength = $(".sect").length;
+var winW = $(window).width();
+var winH = $(window).height();
+var sectW = $(".sect").first().width();
+var sectH = $(".sect").first().height();
+var mainLeft = $(".mainframe").offset().left;
+var len = 20000;
+var dotIndex = Math.floor(mainLeft/sectW*-1);
+var it;
+var it2;
+var obj1 = $("div.sect:eq(0) > div.clo");
+var obj2 = $("div.sect:eq(0) > div.mid");
+var obj3 = $("div.sect:eq(0) > div.far");
+var prevDotIndex;
+var prevLeft;
+
+
+function varUpdate(){
+    sectLength = $(".sect").length;
+    winW = $(window).width();
+    winH = $(window).height();
+    sectW = $(".sect").first().width();
+    sectH = $(".sect").first().height();
+    mainLeft = $(".mainframe").offset().left;
+    difLeft = prevLeft - mainLeft;
+    len = winW*widthC*(sectLength-1);
+    dotIndex = Math.floor(mainLeft/sectW*-1);
+
+    obj1 = $("div.sect:eq("+dotIndex+") > div.clo");
+    obj2 = $("div.sect:eq("+dotIndex+") > div.mid");
+    obj3 = $("div.sect:eq("+dotIndex+") > div.far");
+
+}
+
+
+function vertScroll(speed,easingTime,){
+
+   
+        $(".mainframe").finish();
+        if(it==undefined){
+            it=0;
+        }
+
+        varUpdate();
+
+        var go = 0;
+        var back = 0;
+        var event = e || window.event; //именно как аргумент функции или свойство объекта window
+
+        if(event.deltaY>0){
+            if(it<12000){
+                it = it + speed;
+                var top = $(window).scrollTop();
+                $(".mainframe").animate({
+                    "right" : it
+                },easingTime);
+                $(".mainframe").css("top", top);
+
+
+            }else{
+                it = winW*widthC*(sectLength-1);
+                $(".mainframe").animate({
+                        right: it
+                    },
+                    300,
+                    function(){
+                        $(".mainframe").finish()
+                    });
+                $(".mainframe").css("top", top);
+
+            }
+        }else{
+
+            if(it>0){
+                var top = $(window).scrollTop();
+                it = it - speed;
+                $(".mainframe").animate({
+                    "right" : it
+                },easingTime);
+                $(".mainframe").css("top", top);
+
+            }else{
+                it = 0;
+                $(".mainframe").animate({
+                        right: it
+                    },
+                    300,
+                    function(){
+                        $(".mainframe").finish()
+                    });
+                $(".mainframe").css("top", top);
+            }
+        }
+    
+}
+
+
+
+//function setFrame(heightPer,widthPer){//args are cooficients of frame's heigth and width
+//    varUpdate();
+//    widthArray = [8,0.1];
+//    sumUp = 0;
+//    for (key in widthArray){
+//        sumUp = sumUp + widthArray[key]
+//    }
+//    if(widthPer == undefined){
+//        for(i=0; i<sectLength;i++){
+//            $(".mainframe").css("height", winH*heightPer);
+//            $(".mainframe").css("width", winW*sumUp);
+//            $(".sect:eq("+i+")").css("width",winW*widthPer);
+//            $(".sect:eq("+i+")").css("height", winH*widthArray[i]);
+//            widthC = widthPer;
+//        }
+//
+//    }
+//    for(i=0; i<sectLength;i++){
+//        $(".mainframe").css("height", winH*heightPer);
+//        $(".mainframe").css("width", winW*widthPer*sectLength);
+//        $(".sect:eq("+i+")").css("width",winW*widthPer);
+//        $(".sect:eq("+i+")").css("height", winH*heightPer);
+//        widthC = widthPer;
+//    }
+//
+//}
+
+function setFrame(heightPer,widthPer){//args are cooficients of frame's heigth and width
+    varUpdate();
+
+    for(i=0; i<sectLength;i++){
+        $(".mainframe").css("height", winH*heightPer);
+        $(".mainframe").css("width", winW*widthPer*sectLength);
+        $(".sect:eq("+i+")").css("width",winW*widthPer);
+        $(".sect:eq("+i+")").css("height", winH*heightPer);
+        widthC = widthPer;
+    }
+
+}
+
+function setNavDots(firstDot){
+    varUpdate();
+
+    $("body").append("<div class='navDots'></div>");
+
+    for(var i=0; i<sectLength; i++){
+        $(".navDots").append("<div class='navDot'></div>")
+    }
+    $(".navDot:eq("+firstDot+")").addClass("activeDot");
+}
+
+
+function setNavDotsCss(heightPer,widthPer){//args are cooficients of ots heigth and width
+    varUpdate();
+    var heightCoof = winH*heightPer;
+    var widthCoof = winW*widthPer;
+
+    $(".navDots").css({
+        "min-width": "200px",
+        "min-height": "200px",
+        "position": "relative",
+        "bottom": heightCoof+"px",
+        "left": widthCoof+"px"
+    });
+}
+
+function dotLighter(){
+    varUpdate();
+    var dotIndex = Math.round(mainLeft/sectW*-1);
+    var dotIndex2 = Math.floor(mainLeft/sectW*-1);
+    $(".activeDot").removeClass("activeDot");
+    $(".navDot:eq(" +dotIndex2+ ")").addClass("activeDot");
+    $(".mainframe").finish();
+}
+
+function dotDir(dur,easing){
+    return function(){
+        varUpdate();
+        $(".mainframe").finish();
+        var ind = $(".navDot").index(this);
+        it = ind*sectW;
+        $(".mainframe").animate({
+            right : ind*sectW
+        },dur, easing, dotLighter);
+
+        var timer = setTimeout(function that(){
+            setParalaxeLeft(20,0.3,32,31,"easeInOutQuad",0);
+            setTimeout(that)
+        })
+
+    }
+}
+
+function dotNext(dur,easing){
+    return function(){
+        varUpdate();
+        $(".mainframe").finish();
+        it = (dotIndex+1)*sectW;
+        $(".mainframe").animate({
+            right : ind*sectW
+        },dur, easing, dotLighter);
+
+
+    }
+}
+
+
+function fixLeft(speed,a,b,c){
+    varUpdate();
+    var i = dotIndex - 1;
+    var j = dotIndex + 1;
+    var lc = leftChecker();
+    var dir = getDir();
+    if(lc == 1 && dir == 1){
+        $("div.sect:eq("+i+") > div.clo").css({
+            "left" : "-="+speed/a
+        });
+        $("div.sect:eq("+i+") > div.mid").css({
+            "left" : "-="+speed/b
+        });
+        $("div.sect:eq("+i+") > div.far").css({
+            "left" : "-="+speed/c
+        });
+    }
+    if(lc == 1 && dir === 0){
+        $("div.sect:eq("+j+") > div.clo").css({
+            "left" : "+="+speed/a
+        });
+        $("div.sect:eq("+j+") > div.mid").css({
+            "left" : "+="+speed/b
+        });
+        $("div.sect:eq("+j+") > div.far").css({
+            "left" : "+="+speed/c
+        });
+    }
+
+}
+
+
+function setParalaxeLeft(speed,a,b,c,easing,easingTime){
+    varUpdate();
+    obj1.finish();
+    obj2.finish();
+    obj3.finish();
+
+    if(it2==undefined){
+        it2=0;
+    }
+    var speed = speed;
+    var a=a;
+    var b=b;
+    var c=c;
+
+    var lastDotIndex;
+
+    if(event.deltaY>0){
+        if(it2<=20000){
+            it2 = it2 + speed;
+            index = dotIndex -1;
+
+
+            obj1.animate({
+                "left" : "+="+speed/a
+
+
+            },easingTime,easing);
+            obj2.animate({
+                "left" : "-="+speed/b
+
+            },easingTime,easing);
+            obj3.animate({
+                "left" : "-="+speed/c
+
+            },easingTime,easing);
+
+            // if(lastDotIndex>dotIndex){
+            //    alert('SDSD')
+            // }
+
+            // $(".text").text(dotIndex);
+            // $(".text").text(lastDotIndex);
+
+        }
+    }else{
+        if(it2>0){
+            it2 = it2 - speed;
+            obj1.animate({
+                "left" : "-="+speed/a
+            },easingTime,easing);
+            obj2.animate({
+                "left" : "+="+speed/b
+            },easingTime,easing);
+            obj3.animate({
+                "left" : "+="+speed/c
+            },easingTime,easing);
+        }
+    }
+    lastDotIndex = dotIndex;
+    fixLeft(speed,a,b,c);
+}
+
+function setParalaxScale(a,b,c){
+    varUpdate();
+
+    var i=0
+    for(i; i<sectLength; i++){
+        var firstPrevSquare = $("div.sect:eq("+i+") > div.clo").width() * $("div.sect:eq("+i+") > div.clo").height();
+        var secondPrevSquare = $("div.sect:eq("+i+") > div.mid").width() * $("div.sect:eq("+i+") > div.mid").height();
+        var thirdPrevSquare = $("div.sect:eq("+i+") > div.far").width() * $("div.sect:eq("+i+") > div.far").height();
+        var firstCoof = $("div.sect:eq("+i+") > div.clo").width() / $("div.sect:eq("+i+") > div.clo").height();
+        var secondCoof = $("div.sect:eq("+i+") > div.mid").width() / $("div.sect:eq("+i+") > div.mid").height();
+        var thirdCoof = $("div.sect:eq("+i+") > div.far").width() / $("div.sect:eq("+i+") > div.far").height();
+        var firstNowSquare = firstPrevSquare /a;
+        var secondNowSquare = secondPrevSquare / b;
+        var thirdNowSquare = thirdPrevSquare / c;
+
+
+
+        // var firstLayW = $("div.sect:eq("+dotIndex+") > div.clo").width() / a;
+        // var firstLayH = $("div.sect:eq("+dotIndex+") > div.clo").height() / a;
+        // var secondLayW = $("div.sect:eq("+dotIndex+") > div.mid").width() / b;
+        // var secondLayH = $("div.sect:eq("+dotIndex+") > div.mid").height() / b;
+        // var thirdLayW = $("div.sect:eq("+dotIndex+") > div.far").width() / c;
+        // var thirdLayH = $("div.sect:eq("+dotIndex+") > div.far").height() / c;
+        var firstLayW = Math.sqrt(firstNowSquare);
+        var firstLayH = firstLayW/firstCoof;
+        var secondLayW = Math.sqrt(secondNowSquare);
+        var secondLayH = secondLayW/secondCoof;
+        var thirdLayW = Math.sqrt(thirdNowSquare);
+        var thirdLayH = thirdLayW/thirdCoof;
+
+        $("div.sect:eq("+i+") > div.clo").css({
+
+            "width": firstLayW,
+            "height":  firstLayH
+
+        });
+        $("div.sect:eq("+i+") > div.mid").css({
+
+            "width": secondLayW,
+            "height": secondLayH
+        });
+        $("div.sect:eq("+i+") > div.far").css({
+
+            "width": thirdLayW,
+            "height":  thirdLayH
+        });
+
+    }
+}
+
+function scrollFix(){
+    varUpdate();
+
+    var cloLeft = obj1.css("left").slice(0,5);
+    var midLeft = obj2.css("left").slice(0,5);
+    var farLeft = obj3.css("left").slice(0,5);
+    var cloTop = obj1.css("top").slice(0,5);
+    var midTop = obj2.css("top").slice(0,5);
+    var farTop = obj3.css("top").slice(0,5);
+    var CCoofL = cloLeft/sectW;
+    var MCoofL = midLeft/sectW;
+    var FCoofL = farLeft/sectW;
+    var CCoofT = cloTop/sectH;
+    var MCoofT = midTop/sectH;
+    var FCoofT = farTop/sectH;
+
+    obj1.css({
+        "left" : CCoofL.toFixed(2)*100 +"%",
+        "top" : CCoofT.toFixed(2)*100 +"%"
+    });
+    obj2.css({
+        "left" : MCoofL.toFixed(2)*100 +"%",
+        "top" : MCoofT.toFixed(2)*100 +"%"
+    });
+    obj3.css({
+        "left" : FCoofL.toFixed(2)*100 +"%",
+        "top" : FCoofT.toFixed(2)*100 +"%"
+    })
+
+}
+
+function leftChecker(){
+    if(prevDotIndex == undefined)prevDotIndex = dotIndex;
+    if(dotIndex != prevDotIndex){
+        prevDotIndex = dotIndex;
+        return 1;
+    }
+    prevDotIndex = dotIndex;
+    return 0;
+}
+
+function getDir(){
+    if(prevLeft == undefined)prevLeft=0;
+    varUpdate();
+    if(difLeft < 0){
+        prevLeft = mainLeft;
+        return 0;
+    }
+    if(difLeft > 0){
+        prevLeft = mainLeft;
+        return 1;
+    }
+}
+
+
+function onVertScrollStop(k,s){
+
+    //$("#one").text(lastMainLeft)
+    //$("#two").text(mainLeft*-1)
+    for( var key in limit){
+        if(mainLeft*-1<limit[key]+120){
+            index=key;
+            //alert(index)
+            break;
+        }
+    }
+
+    if(lastMainLeft < limit[k] && mainLeft*-1 > limit[k] && toggle === 0){
+        toggle = 1;
+        //alert(k)
+    }
+    if(lastMainLeft > limit[k] && mainLeft*-1 < limit[k] && toggle === 0){
+        toggle = 1;
+        //alert(k)
+    }
+
+    if(toggle === 1){
+
+        if(event.deltaY >0){
+            score[k]++;
+        }
+        if(event.deltaY <0){
+            score[k]--;
+        }
+
+        if(score[k] === s){
+            toggle = 0;
+            //score = 0;
+
+        }
+        if(score[k] <= 0){
+            toggle = 0;
+            score[k] = 0;
+
+        }
+        a = changeImg(index,score);
+        b = function(){v=1};
+        c = function(){v=1};
+    }
+    if(toggle === 0){
+        $("#obj-" + index + "-" + 1).css({
+            "opacity": "0"
+        })
+        a = vertScroll;
+        b = dotLighter;
+        c = setParalaxeLeft;
+    }
+    lastMainLeft = mainLeft*-1;
+
+}
+
+function changeImg(index,score){
+
+
+    return function call(){
+        //var array  = imgArray[index];
+        //var nowImg = array[score];
+        prevScore = score[index] - 1;
+        sc = score[index];
+
+        nextScrore = sc + 1;
+
+
+        if(event.deltaY>0) {
+            if (score[index] > 0) {
+                $("#obj-" + index + "-" + prevScore).css({
+                    "opacity": "0"
+                })
+                $("#obj-" + index + "-" + score[index]).css({
+                    "opacity": "1"
+                })
+            }else{
+                $("#obj-" + index + "-" + prevScore).css({
+                    "opacity": "0"
+                })
+            }
+
+        }
+        if(event.deltaY <0){
+
+            $("#obj-" + index + "-" + nextScrore).css({
+                "opacity": "0"
+            })
+            $("#obj-" + index + "-" + sc).css({
+                "opacity": "1"
+            })
+
+        }
+    }
+}
+
+function changeChar(cl,amount,step){
+    var i = 0;
+    return function(){
+        k = i%amount;
+        j = amount-1
+        h = k-1;
+        if(Math.floor(i) == Math.ceil(i)){
+            if(k!== 0 ){
+                $("#"+cl + h).css({
+                    "opacity": "0"
+                })
+                $("#"+cl + k).css({
+                    "opacity": "1"
+                })
+            }else{
+                $("#"+cl + j).css({
+                    "opacity": "0"
+                })
+                $("#"+cl + k).css({
+                    "opacity": "1"
+                })
+            }
+        }
+
+
+        i+=(1/step);
+    }
+}

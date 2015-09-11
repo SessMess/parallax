@@ -1,0 +1,601 @@
+body{
+	display: block;
+	margin: 0px;
+	overflow: hidden;
+}
+div{
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+.mainframe{
+    
+    /*height and width in js*/
+    background-color: yellow;
+    margin: 0 auto;
+    position: relative;
+    /*left:-10px;*/
+	padding: 0px;
+	font-size: 0;
+	overflow: hidden
+
+}
+.sect{
+	/*width:10px;*/
+    /*height: 100%;*/
+    display: inline-block;
+	font-size: 15px;
+	overflow: hidden;
+}
+
+.one{
+	background-color: antiquewhite;
+}
+.two{
+	background-color: burlywood ;
+}
+.three{
+	background-color: cornsilk;
+}
+.four{
+	background-color: honeydew;
+}
+.five{
+	background-color: turquoise;
+}
+/*.mainframe{
+	width:  calc(100%*5 + 50px);
+}*/
+
+.text{
+	width: 30px;
+	height: 40px;
+	background-color: red;
+	position: relative;
+	left:500px;
+}
+
+/*.navDots{
+	min-width: 200px;
+	min-height: 200px;
+	position: fixed;
+	bottom: -10%;
+	left: 45%;
+}*/
+.navDot{
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	background-color: red;
+	margin: 5px ;
+}
+.activeDot{
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	background-color: yellow;
+	margin: 5px ;
+}
+
+.layer{
+	width: inherit;
+	height: inherit;
+	/*border: black 2px solid;*/
+	display: inherit;
+	position: relative;
+
+
+	
+}
+
+.object{
+	width: 105px;
+	height: 105px;
+	background-color: aquamarine;
+	position: relative;
+	left: 700px;
+	top: 500px;
+	opacity: 0;
+}
+
+.one{
+	height: 100%;
+	width: inherit;
+	background-image: url("general/1.png");
+}
+.farBuild{
+	height: 100%;
+	width: 100%;
+	background-image: url("general/farBuild.png");
+	z-index: 1;
+	position: relative;
+	top:10%;
+}
+
+.clouds{
+	position: absolute;
+	z-index: 0;
+	height: 200px;
+	width: 100%;
+	background-repeat: round;
+	background-size: cover;
+}
+.clouds2{
+	position: absolute;
+	top:-200%;
+	z-index: 2;
+	height: 200px;
+	width: 100%;
+	background-repeat: round;
+	background-size: cover;
+}
+
+.cloud{
+	position: absolute;
+
+	top:-100px;
+	z-index: 0;
+
+	background-image: url("general/cloud.png");
+	display: inline-block;
+	background-repeat: round;
+	background-size: cover;
+}
+.cloud2{
+	position: absolute;
+
+	top:500px;
+	z-index: 3;
+
+	background-image: url("general/cloud.png");
+	display: inline-block;
+	background-repeat: round;
+	-moz-background-size: cover;
+
+}
+
+.closeBuild1{
+	position: absolute;
+	z-index: 3;
+	top:-100%;
+	height: 100%;
+	width: 10000px;
+	background-image: url("general/closeBuild1.png");
+	display:inline-block;
+	left: 0px;
+
+}
+.closeBuild2{
+	position: absolute;
+	z-index: 3;
+	top:-100%;
+	left:25%;
+	height: 100%;
+	width: 10000px;
+	background-image: url("general/closeBuild2.png");
+	display:inline-block;
+
+}
+.closeBuild3{
+	position: absolute;
+	z-index: 3;
+	top:-110%;
+	left:65%;
+	height: 100%;
+	width: 10000px;
+	background-image: url("general/closeBuild3.png");
+	display:inline-block;
+}
+.main{
+	z-index: 4;
+	height: 100%;
+	width: 100%;
+
+	/*display:inline-block;*/
+	position: absolute;
+	top:0%;
+}
+
+.first{
+	position: absolute;
+	z-index: 4;
+	height: 100%;
+
+	top:0%;
+	background-image: url("first/first.png");
+	display:inline-block;
+	background-size: cover;
+}
+.second{
+	position: absolute;
+	z-index: 4;
+	height: 100%;
+
+	top:-1%;
+
+	background-image: url("second/second.png");
+	display:inline-block;
+    background-size: cover;
+}
+.third{
+	position: absolute;
+	z-index: 4;
+	height: 100%;
+
+	top:-1%;
+
+	background-image: url("third/third.png");
+	display:inline-block;
+    background-size: cover;
+}
+.fourth{
+	position: absolute;
+	z-index: 3;
+	height: 100%;
+
+	top:-3%;
+
+	background-image: url("fourth/fourth.png");
+	display:inline-block;
+    background-size: cover;
+}
+.floor{
+	position: absolute;
+	background-image: url("general/floor.png");
+	width: 11500px;
+	height: 973px;
+	bottom:-200px;
+	left: 0px;
+	z-index: 3;
+}
+
+
+.table1{
+	z-index: 5;
+	position: absolute;
+	width: 1000px;
+	height: 500px;
+}
+.imgTable11{
+	position: absolute;
+	z-index: 6;
+	background-image: url("first/table11.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+}
+.imgTable12{
+	position: absolute;
+	z-index: 6;
+	background-image: url("first/table12.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+
+
+.table2{
+	z-index: 5;
+	position: absolute;
+	width: 1000px;
+	height: 500px;
+}
+.imgTable21{
+	position: absolute;
+	z-index: 6;
+	background-image: url("first/table21.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+}
+.imgTable22{
+	position: absolute;
+	z-index: 6;
+	background-image: url("first/table22.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.table3{
+	z-index: 5;
+	position: absolute;
+	width: 1000px;
+	height: 2000px;
+}
+.chair{
+	position: absolute;
+	z-index: 6;
+	background-image: url("second/chair.png");
+	width: 5000px;
+	height: 700px;
+	/*left:100%;*/
+	background-size: cover;
+}
+.tab{
+	position: absolute;
+	z-index: 6;
+	background-image: url("second/tab.png");
+	width: 5000px;
+	height: 700px;
+	/*left:100%;*/
+	background-size: cover;
+}
+.imgTable31{
+	position: absolute;
+	z-index: 6;
+	background-image: url("second/table31.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+}
+.imgTable32{
+	position: absolute;
+	z-index: 6;
+	background-image: url("second/table32.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.imgTable33{
+	position: absolute;
+	z-index: 6;
+	background-image: url("second/table33.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+
+.wall{
+	position: absolute;
+	/*height: 100%;*/
+	/*width: 500px;*/
+	top:0px;
+	background-image: url("second/wall.png");
+	background-size: cover;
+}
+.table4{
+	z-index: 5;
+	position: absolute;
+	width: 1000px;
+	height: 500px;
+}
+.imgTable41{
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/imgTable41.png");
+	width: 2000px;
+	height: 1000px;
+	/*left:100%;*/
+	/*background-size: cover;*/
+}
+.imgTable42{
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/imgTable42.png");
+	width: 2000px;
+	height: 1000px;
+	/*left:100%;*/
+	/*background-size: cover;*/
+	opacity: 0;
+}
+.table5{
+	z-index: 5;
+	position: absolute;
+	width: 1000px;
+	height: 500px;
+}
+.imgTable51{
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/imgTable51.png");
+	width: 2000px;
+	height: 1000px;
+	/*left:100%;*/
+	/*background-size: cover;*/
+}
+.imgTable52{
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/imgTable52.png");
+	width: 2000px;
+	height: 1000px;
+	/*left:100%;*/
+	/*background-size: cover;*/
+	opacity: 0;
+}
+
+.char{
+	position: fixed;
+	z-index: 6;
+
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+
+}
+
+.c1{
+	position: fixed;
+	z-index: 6;
+	background-image: url("char/4.png");
+	width: 1000px;
+	height: 600px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 1;
+}
+.c2{
+	position: fixed;
+	z-index: 6;
+	background-image: url("char/5.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.c3{
+	position: fixed;
+	z-index: 6;
+	background-image: url("char/6.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.c4{
+	position: fixed;
+	z-index: 6;
+	background-image: url("char/7.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.c5{
+	position: fixed;
+	z-index: 6;
+	background-image: url("char/8.png");
+	width: 1000px;
+	height: 500px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.charFace1{
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	z-index: 8;
+	background-image: url("char/face1.png");
+	background-size: cover;
+
+}
+.charFace2{
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	z-index: 7;
+	background-image: url("char/face2.png");
+	background-size: cover;
+
+}
+.dialog1{
+	position: absolute;
+	z-index: 7;
+	background-image: url("general/dialog.png");
+	background-size: cover;
+	opacity: 0;
+	font-family: 'Lobster', cursive;
+
+}
+.dialog2{
+	position: fixed;
+	z-index: 7;
+	background-image: url("general/dialog.png");
+	background-size: cover;
+	opacity: 0;
+	font-family: 'Lobster', cursive;
+}
+.dialog3{
+	position: absolute;
+	z-index: 7;
+	background-image: url("general/dialog.png");
+	background-size: cover;
+	opacity: 0;
+	font-family: 'Lobster', cursive;
+}
+
+.friend{
+	position: absolute;
+	position: absolute;
+
+}
+
+#friend1{
+
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/friend1.png");
+	background-size: cover;
+}
+#friend2{
+
+	position: absolute;
+	z-index: 7;
+	background-image: url("third/friend2.png");
+	background-size: cover;
+	opacity: 0;
+}
+.sun{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background-image: url("fourth/sun.png");
+	background-size: cover;
+	z-index: 0;
+
+}
+.c1s{
+	position: relative;
+	z-index: 6;
+	background-image: url("char/4.png");
+	width: 1000px;
+	height: 600px;
+	/*left:100%;*/
+	background-size: cover;
+	opacity: 0;
+}
+.charFace2s{
+	width: 100px;
+	height: 100px;
+	position: relative;
+	z-index: 7;
+	background-image: url("char/face2.png");
+	background-size: cover;
+	opacity: 0;
+}
+.load{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index:9;
+	background-image: url("load.gif");
+	background-size: cover;
+
+}
+
+.tip{
+	width: 300px;
+	height: 150px;
+	background-color: rgba(0, 255, 255, 0);
+	border:#d520df;
+	box-shadow:5px 5px 20px #df60d3;
+	position: fixed;
+	top:150px;
+	left:300px;
+	z-index: 10;
+
+}
+
+.tipP{
+	font-family: 'Lobster', cursive;
+	font-size: larger;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;
+	cursor: default;
+}
