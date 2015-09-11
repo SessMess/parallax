@@ -18,8 +18,6 @@ div{
 	font-size: 0;
 	overflow: hidden
 
-
-
 }
 .sect{
 	/*width:10px;*/
@@ -27,8 +25,6 @@ div{
     display: inline-block;
 	font-size: 15px;
 	overflow: hidden;
-
-
 }
 
 .one{
@@ -582,8 +578,8 @@ div{
 }
 
 .tip{
-	width: 300px;
-	height: 150px;
+	width: 301px;
+	height: 151px;
 	background-color: rgba(0, 255, 255, 0);
 	border:#d520df;
 	box-shadow:5px 5px 20px #df60d3;
